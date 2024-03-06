@@ -1,1 +1,38 @@
+import pandas as pd
+import sqlite3
+
+# Define database file path and output CSV file path
+db_path = "database.sqlite"
+csv_path = "data.csv"
+
+# Connect to the SQLite database
+conn = sqlite3.connect(db_path)
+
+# Specify the table name to export (replace 'your_table_name' with the actual name)
+table_name1 = "Country"
+table_name2 = "League"
+table_name3 = "Match"
+table_name4 = "Player"
+table_name5 = "Player_Attributes"
+table_name6 = "Team"
+table_name7 = "Team_Attributes"
+table_name8 = "sqlite_sequence"
+
+# Read data from the table into a Pandas DataFrame
+df1 = pd.read_sql(f"SELECT * FROM {table_name1}", conn)
+df2 = pd.read_sql(f"SELECT * FROM {table_name2}", conn)
+df3 = pd.read_sql(f"SELECT * FROM {table_name3}", conn)
+df4 = pd.read_sql(f"SELECT * FROM {table_name4}", conn)
+df5 = pd.read_sql(f"SELECT * FROM {table_name5}", conn)
+df6 = pd.read_sql(f"SELECT * FROM {table_name6}", conn)
+df7 = pd.read_sql(f"SELECT * FROM {table_name7}", conn)
+df8 = pd.read_sql(f"SELECT * FROM {table_name8}", conn)
+
+# Close the connection to the database
+conn.close()
+
+# Save the DataFrame to a CSV file
+df.to_csv(csv_path, index=False)
+
+print(f"Data from table '{table_name}' exported to '{csv_path}'")
 
